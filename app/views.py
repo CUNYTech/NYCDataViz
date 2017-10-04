@@ -2,6 +2,7 @@ from app import app
 
 from flask import render_template
 from flask import Response
+<<<<<<< HEAD
 
 from dateutil.relativedelta import *
 from dateutil.parser import *
@@ -10,14 +11,19 @@ import requests
 
 from datetime import *
 
+=======
+from flask import jsonify
+>>>>>>> adding some stuff
 @app.route('/')
 @app.route('/index.html')
+
 def index():
     '''
     Returns a static webpage for now.
     '''
     return render_template('index.html')
 
+<<<<<<< HEAD
 
 @app.route('/query/')
 def request():
@@ -51,3 +57,10 @@ def request():
     # Create the response
     response = Response(response=r, status=200, mimetype='application/json')
     return response
+=======
+@app.route('/request')
+def request():
+    #Use the make_request() function to get to data for
+    req = make_request()
+    return jsonify(req)
+>>>>>>> adding some stuff
