@@ -2,7 +2,7 @@ from app import app
 
 from flask import render_template
 from flask import Response
-<<<<<<< HEAD
+#<<<<<<< HEAD
 
 from dateutil.relativedelta import *
 from dateutil.parser import *
@@ -11,9 +11,17 @@ import requests
 
 from datetime import *
 
-=======
+#=======
 from flask import jsonify
->>>>>>> adding some stuff
+#>>>>>>> adding some stuff
+
+
+
+
+
+
+
+
 @app.route('/')
 @app.route('/index.html')
 
@@ -61,3 +69,53 @@ def request():
     req = make_request()
     return jsonify(req)
 >>>>>>> adding some stuff
+
+
+
+#===============================================================================
+#SQL stuff
+from sqlalchemy import *
+from sqlalchemy.engine.url import URL
+from sqlalchemy.ext.declarative import declarative_base
+
+db = {'drivername': 'postgres', #I Heroku information
+      'username': 'postgres',
+      'password': 'postgres',
+      'host': '192.168.99.100',
+      'port': 5432}
+
+url = URL(**db)
+engine = create_engine(url)
+
+metadata = MetaData()
+metadata.reflect(bind=engine)
+
+def create_table(name, metadata):
+    tables = metadata.tables.keys()
+    if name not in tables:
+        table = Table(name, metadata,
+                      Column('latitude', Integer),
+                      Column('longitude', Integer),
+                      Column('created_date', String)
+                      Column('agency', string),
+                      Column('agency_name', Integer),
+                      Column('complaint_type', String),
+                      Column('descriptor', String))
+        table.create(engine)
+
+
+tables = ['table1', 'table2', 'table3','table4', 'table5', 'table6'
+'table7']
+latitude_ =
+longitude_ =
+created_date_ =
+agency_ =
+agency_name_ =
+complaint_type_ =
+descriptor_ = 
+# insert multiple data
+conn.execute(table.insert(),[
+   {'latitude':latitude_,'longitude':longitude_},
+   {'created_date':created_date_,'agency':agency_},
+   {'agency_name':agency_name_},{'complaint_type':complaint_type_},
+   {'descriptor':descriptor_}])
