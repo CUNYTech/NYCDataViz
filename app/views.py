@@ -73,6 +73,33 @@ def request():
 
 
 #===============================================================================
+#function to fill the tables
+def Get_request_Column(Column_name):
+    '''
+    Made the function smaller
+    '''
+
+    '''
+    GET request on Socrata's API.
+    First part is the data set we're using.
+    $limit is set to 500K, because we want 500K records.
+    $select will select the columns we want, as defined earlier.
+    $where allows us to choose the time frame. In this case it's 6 weeks.
+    '''
+    today = date.today()
+    six_weeks_ago = today - relativedelta(weeks=6)
+    # Convert datetimes into Floating Timestamps for use with Socrata.
+    today = today.strftime('%Y-%m-%d') + 'T00:00:00'
+    six_weeks_ago = six_weeks_ago.strftime('%Y-%m-%d') + 'T00:00:00'
+    r = requests.get(
+        "https://data.cityofnewyork.us/resource/fhrw-4uyv.json?" +
+        "$limit=500000&$select={}&".format(Column_name) +
+        "$where=created_date between \'{}\' and \'{}\' and longitude IS NOT NULL".format(six_weeks_ago, today))
+
+        #Might need this..
+        #response = Response(response=r, status=200, mimetype='application/json')
+    return r
+
 #SQL stuff
 from sqlalchemy import *
 from sqlalchemy.engine.url import URL
@@ -97,25 +124,35 @@ def create_table(name, metadata):
                       Column('latitude', Integer),
                       Column('longitude', Integer),
                       Column('created_date', String)
-                      Column('agency', string),
+                      Column('agency', String),
                       Column('agency_name', Integer),
                       Column('complaint_type', String),
                       Column('descriptor', String))
         table.create(engine)
 
-
-tables = ['table1', 'table2', 'table3','table4', 'table5', 'table6'
-'table7']
-latitude_ =
-longitude_ =
-created_date_ =
-agency_ =
-agency_name_ =
-complaint_type_ =
-descriptor_ = 
+latitude_ = Get_request_Column('latitude')
+longitude_ = Get_request_Column('longitude')
+created_date_ = Get_request_Column('created_date')
+agency_ = Get_request_Column('agency')
+agency_name_ = Get_request_Column('agency_name')
+complaint_type_ = Get_request_Column('complaint_type')
+descriptor_ = Get_request_Column('descriptor')
 # insert multiple data
 conn.execute(table.insert(),[
    {'latitude':latitude_,'longitude':longitude_},
    {'created_date':created_date_,'agency':agency_},
    {'agency_name':agency_name_},{'complaint_type':complaint_type_},
    {'descriptor':descriptor_}])
+
+
+
+
+
+
+
+
+
+
+
+
+=======
