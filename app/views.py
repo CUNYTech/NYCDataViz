@@ -1,4 +1,6 @@
-from app import app
+from flask import Flask
+
+app = Flask(__name__)
 
 from flask import render_template
 from flask import Response
@@ -21,17 +23,16 @@ from flask import jsonify
 
 
 
-
+"""
 @app.route('/')
 @app.route('/index.html')
-
 def index():
     '''
     Returns a static webpage for now.
     '''
     return render_template('index.html')
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 
 @app.route('/query/')
 def request():
@@ -62,18 +63,18 @@ def request():
     # Create the response
     response = Response(response=r, status=200, mimetype='application/json')
     return response
-=======
 @app.route('/request')
 def request():
     #Use the make_request() function to get to data for
     req = make_request()
     return jsonify(req)
->>>>>>> adding some stuff
+#>>>>>>> adding some stuff
 
 
-
+"""
 #===============================================================================
 #function to fill the tables
+
 def Get_request_Column(Column_name):
     '''
     Made the function smaller
@@ -93,7 +94,7 @@ def Get_request_Column(Column_name):
     six_weeks_ago = six_weeks_ago.strftime('%Y-%m-%d') + 'T00:00:00'
     r = requests.get(
         "https://data.cityofnewyork.us/resource/fhrw-4uyv.json?" +
-        "$limit=500000&$select={}&".format(Column_name) +
+        "$limit=10000&$select={}&".format(Column_name) +
         "$where=created_date between \'{}\' and \'{}\' and longitude IS NOT NULL".format(six_weeks_ago, today))
 
         #Might need this..
@@ -106,12 +107,12 @@ from sqlalchemy.engine.url import URL
 from sqlalchemy.ext.declarative import declarative_base
 
 db = {'drivername': 'postgres', #I Heroku information
-      'username': 'postgres',
-      'password': 'postgres',
-      'host': '192.168.99.100',
+      'username': 'zqswoziimgfgiw',
+      'password': 'a208273872dfe3ca8c742b5d61c493d3932cf30c4c61da3a5bf75805bce69dc0',
+      'host': 'ec2-50-17-217-166.compute-1.amazonaws.com',
       'port': 5432}
 
-url = URL(**db)
+url = URL(db)
 engine = create_engine(url)
 
 metadata = MetaData()
@@ -123,7 +124,7 @@ def create_table(name, metadata):
         table = Table(name, metadata,
                       Column('latitude', Integer),
                       Column('longitude', Integer),
-                      Column('created_date', String)
+                      Column('created_date', String),
                       Column('agency', String),
                       Column('agency_name', Integer),
                       Column('complaint_type', String),
@@ -143,16 +144,3 @@ conn.execute(table.insert(),[
    {'created_date':created_date_,'agency':agency_},
    {'agency_name':agency_name_},{'complaint_type':complaint_type_},
    {'descriptor':descriptor_}])
-
-
-
-
-
-
-
-
-
-
-
-
-=======
