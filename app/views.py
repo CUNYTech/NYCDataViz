@@ -9,7 +9,8 @@ from dateutil.parser import *
 
 import requests
 import os
-import json
+
+
 from flask import jsonify
 @app.route('/')
 @app.route('/index.html')
@@ -24,6 +25,7 @@ def map():
     return render_template('map.html')
 
 
+
 @app.route('/query')
 def request_data():
     # These are the desired columns:
@@ -35,7 +37,6 @@ def request_data():
     today = datetime.now()  # Generate datetime object right now.
     today = today.astimezone(eastern_tz)  # Convert today to new datetime
     time_delta = today - relativedelta(days=3)
-
     # Convert datetimes into Floating Timestamps for use with Socrata.
     today = today.strftime('%Y-%m-%d') + 'T00:00:00'
     time_delta = time_delta.strftime('%Y-%m-%d') + 'T00:00:00'
@@ -47,23 +48,11 @@ def request_data():
     $select will select the columns we want, as defined earlier.
     $where allows us to choose the time frame. In this case it's 6 weeks.
     '''
-    api_url = "https://data.cityofnewyork.us/resource/fhrw-4uyv.json?"
-    filters = {
-        '$limit': 10000,
-        '$select': columns,
-        '$where': f'created_date between \'{time_delta}\' and \'{today}\'' +
-            'and longitude is not null'
-    }
-    agency = request.args.get('agency')
-    complaint_type = request.args.get('type')
-    if agency is not None:
-        # Append the agency to the API url for searching.
-        api_url += f'agency={agency}'
-    if complaint_type is not None:
-        # Update the filter with a full text search of the data set.
-        filters.update({'$q': f'\'{complaint_type}\''})
-
-    r = requests.get(api_url, params=filters)
+    r = requests.get(
+        "https://data.cityofnewyork.us/resource/fhrw-4uyv.json?" +
+        "$limit=500000&$select={}&".format(columns) +
+        "$where=created_date between \'{}\' and \'{}\' and longitude IS NOT NULL".format(time_delta, today)
+    )
 
     # Create the response
     response = Response(response=r, status=200, mimetype='application/json')
