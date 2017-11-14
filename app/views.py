@@ -10,6 +10,7 @@ from dateutil.relativedelta import *
 from dateutil.parser import *
 
 import requests
+<<<<<<< Updated upstream
 
 from datetime import *
 
@@ -24,6 +25,11 @@ from flask import jsonify
 
 
 """
+=======
+import os
+import json
+from flask import jsonify
+>>>>>>> Stashed changes
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -63,6 +69,7 @@ def request():
     # Create the response
     response = Response(response=r, status=200, mimetype='application/json')
     return response
+<<<<<<< Updated upstream
 @app.route('/request')
 def request():
     #Use the make_request() function to get to data for
@@ -144,3 +151,23 @@ conn.execute(table.insert(),[
    {'created_date':created_date_,'agency':agency_},
    {'agency_name':agency_name_},{'complaint_type':complaint_type_},
    {'descriptor':descriptor_}])
+=======
+
+
+
+@app.route('/business')
+def request_business_data():
+    url = 'https://api.foursquare.com/v2/venues/explore'
+
+    params = {
+    'client_id' : os.environ['FOURSQUARE_CLIENT_ID'],
+    'client_secret' : os.environ['FOURSQUARE_CLIENT_SECRET'],
+        'v': '20170801',
+        'll' : '40.7243,-74.0018',
+        'query' :'coffee',
+        'limit': '1'
+        }
+    resp = requests.get(url=url, params=params)
+    data = json.loads(resp.text)
+    return jsonify(data)
+>>>>>>> Stashed changes
