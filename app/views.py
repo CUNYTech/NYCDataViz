@@ -9,7 +9,7 @@ from dateutil.parser import *
 
 import requests
 import os
-
+import json
 
 from flask import jsonify
 @app.route('/')
@@ -69,8 +69,8 @@ def request_business_data():
     'client_secret' : os.environ['FOURSQUARE_CLIENT_SECRET'],
         'v': '20170801',
         'll' : '40.7243,-74.0018',
-        'query' :'coffee',
-        'limit': '1'
+        'query' :'bars',
+        'limit': '3'
         }
     resp = requests.get(url=url, params=params)
     data = json.loads(resp.text)
