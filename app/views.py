@@ -12,6 +12,10 @@ import os
 import json
 
 from flask import jsonify
+from pymongo import MongoClient
+
+
+
 @app.route('/')
 @app.route('/index.html')
 def index():
@@ -68,10 +72,10 @@ def request_business_data():
     'client_id' : os.environ['FOURSQUARE_CLIENT_ID'],
     'client_secret' : os.environ['FOURSQUARE_CLIENT_SECRET'],
         'v': '20170801',
-        'll' : '40.7243,-74.0018',
-        'query' :'bars',
-        'limit': '3'
+        'near' : 'New York City',
+        'query' :'restaurants,bars',
+        'limit': 500
         }
     resp = requests.get(url=url, params=params)
-    data = json.loads(resp.text)
-    return jsonify(data)
+    #data = json.loads(resp.text)
+    return Response(response=resp, status=200, mimetype='application/json')
