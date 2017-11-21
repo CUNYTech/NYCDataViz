@@ -157,3 +157,20 @@ def retrieve():
     # Create the response
     response = Response(response=r, status=200, mimetype='application/json')
     return response
+
+
+@app.route('/business')
+def request_business_data():
+    url = 'https://api.foursquare.com/v2/venues/explore'
+
+    params = {
+    'client_id' : os.environ['FOURSQUARE_CLIENT_ID'],
+    'client_secret' : os.environ['FOURSQUARE_CLIENT_SECRET'],
+        'v': '20170801',
+        'near' : 'New York City',
+        'query' :'restaurants,bars',
+        'limit': 500
+        }
+    resp = requests.get(url=url, params=params)
+    #data = json.loads(resp.text)
+    return Response(response=resp, status=200, mimetype='application/json')
