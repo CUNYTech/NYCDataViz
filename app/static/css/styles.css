@@ -6,8 +6,6 @@ a:hover{
  color:#4682B4 ;
 }
 
-
-
 #get_started{
 	margin-top: 200px;
 	color: white;
@@ -21,6 +19,7 @@ a:hover{
 #logo{
 	margin-left: 10px;
 	padding-top: 10px;
+	font-size: 50px
 	color: white;
 }
 #main_header{
@@ -83,7 +82,7 @@ a:hover{
 	left:0;
 	margin:0px;
 
-	background-image: url(http://wallpapercave.com/wp/PV78PWB.jpg);
+	background-image: url(https://comps.canstockphoto.com/ornamental-blue-tree-illustration-drawing_csp5707500.jpg);
 	background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
