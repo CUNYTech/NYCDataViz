@@ -160,16 +160,31 @@ a:hover{
 }
 
 .logo{
-  margin-top: 4em;
+  margin-top: 3em;
   padding-top: 1em;
   font-size: 4em;
+  font-weight: bold;
 }
-
+.pic {
+  background-image: url(http://carriegallagher.com/wp-content/uploads/2014/05/sumall_lower_manhattan_wtc_one_nyc_new_york.png);
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+}
 .sub_logo{
-  margin-top: 4em;
+  margin-top: 6em;
   border-style: solid;
-  border-width: 1px;
+  border-width: 10px;
   border-color: #4682B4;
+  font-weight: bolder;
+  font-size: 3em;
+  color: black;
+  border-left:4em;
+  border-right:4em;
+  letter-spacing: 2px;
 }
 
 .nav{
@@ -197,7 +212,7 @@ a:hover{
 
 .white_background{
   background-color: white;
-  min-height: 30em;
+  min-height: 65em;
 }
 
 
