@@ -3,27 +3,28 @@
 <head>
 	<title>Data Viz</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<link rel = "stylesheet" href = "../static/css/styles.css">
-
+	<link rel = "stylesheet" href = "../static/css/map.css">
 
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body>
 <div class = "container-fluid parallax">
-	 <nav class = "navbar opacity navbar-default navbar-toggleable-md navbar-fixed-top" id = "Home">
-    <div class = "container-fluid">
-      <div class = "navbar-header">
-        <a href = "/index">
-          <h1 id = "logo"> Data Viz</h1>
-        </a>
-      </div>
+	 <nav class = "navbar opacity navbar-default navbar-toggleable-md navbar-fixed-top" id ="Home">
+    <div class = "navagation">
+      <a class="blue navbar-brand" id = "logo" href="#Home">Data Viz</a>
 
+      <button onclick = "Toggle();" type = "button" class = "navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span> 
+        <span class="icon-bar"></span>
+      </button>
+      
       <div class = "collapse navbar-collapse" id = "myNavBar">
         <ul class ="nav navbar-nav navbar-right" >
           <li><a class = "nav" href = '/map'> <h4 class = "nav_link">Our Data</h4></a></li>
@@ -31,26 +32,20 @@
           <li><a class = "nav" href = '#About'> <h4 class = "nav_link"> More Info </h4> </a></li>
         </ul>
       </div>
+
+      <div id = "dropTop" class="dropdown-content">
+        <a id = "all" onclick = "Toggle();" href= "#">All Departments</a>
+        <a id = "NYPD" onclick = "Toggle();" href= "#">Police Department</a>
+        <a id = "FDNY" onclick = "Toggle();"  href= "#">Fire Department</a>
+        <a id = "DOHMH" onclick = "Toggle();" href= "#">Department of Health and Mental Hygiene</a>
+        <a id = "DEP" onclick = "Toggle();" href= "#">Department of Environmental Protection</a>
+      </div>
+
+
     </div>
   </nav>
 
-
-	<h1 class = "main" id = "main_header">View New York</h1>
-	<h1 class = "main" id = "under_header">At A <span class = "blue_font white_shadow"> Different </span> Angle</h1>
-
-	<center id = "get_started"> <a class = "white" href = "/map">Get Started </a> </center>
 </div>
-<div class = "container-fluid blue page" id = "Info">
-	<h1 class = "white header" > What is Data Visualization</h1>
-	<br> <br>
-
-	<center > <iframe width="560" height="315" src="https://www.youtube.com/embed/xekEXM0Vonc" frameborder="0" allowfullscreen></iframe></center>
-</div>
-
-<div class = "container-fluid white page">
-	<h1 class = "blue_font header">What We Do</h1>
-</div>
-
 </body>
-<script src = "../static/js/home.js"> </script>
+<script src = "../static/js/map.js"> </script>
 </html>
