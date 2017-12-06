@@ -1,6 +1,9 @@
 a,h1,h2,h3,h4,h5{
   font-family: 'Lato', sans-serif;
 }
+h1{
+  font-size: 250%;
+}
 a{
   font-size: 18px;
 }
@@ -130,8 +133,6 @@ a:hover{
     color: black;
     padding-top:5%;
     padding-left: 8%;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
     width: 100%;
     text-decoration: none;
     display: block;
@@ -139,8 +140,6 @@ a:hover{
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
-
-
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -165,14 +164,25 @@ a:hover{
   font-size: 4em;
   font-weight: bold;
 }
-.pic {
+.pic{
+  height:65em;
+}
+.pic:before {
+  content: '';
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0px;
+
   background-image: url(http://carriegallagher.com/wp-content/uploads/2014/05/sumall_lower_manhattan_wtc_one_nyc_new_york.png);
   background-attachment: fixed;
   background-position: center top;
   background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
   background-size: cover;
+  height: 150%;
+  width: 100%;
+  opacity:.5;
+  z-index: -5;
 }
 .sub_logo{
   margin-top: 4em;
@@ -209,9 +219,15 @@ a:hover{
   margin-top: 100px;
   min-height: 300px;
 }
-
+.sub_header{
+  margin-top:5%;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+.white{
+  color: white;
+}
 .white_background{
-  background-color: white;
   min-height: 65em;
 }
 
