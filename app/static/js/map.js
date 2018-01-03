@@ -7,7 +7,7 @@
 var map;
 var heatmap;
 var markersArray = [];
-var queryString = '/query';
+var queryString = '/q';
 
 function ready(fn){
     if(document.attachEvent ? document.readyState === "complete" : document.readyState != "loading"){
@@ -310,7 +310,7 @@ function complaintType(){
             let result = [];
             for (var i = 0; i < data.length; i++) {
                 result.push(new google.maps.LatLng(data[i].latitude, data[i].longitude));
-                var marker s= new google.maps.Marker({
+                var marker = new google.maps.Marker({
                  position: new google.maps.LatLng(data[i].latitude, data[i].longitude),
                  map: map
                 });
