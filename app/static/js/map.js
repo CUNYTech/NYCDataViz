@@ -7,7 +7,7 @@
 var map;
 var heatmap;
 var markersArray = [];
-var queryString = '/q';
+var queryString = '/query';
 
 function ready(fn){
     if(document.attachEvent ? document.readyState === "complete" : document.readyState != "loading"){
